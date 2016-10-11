@@ -1,0 +1,30 @@
+<h2>Welcome to Team Randomizer!</h2>
+<form action="/" method="post">
+  <div>
+  <label>Names</label><br>
+  <textarea rows="4" cols="75" name="names"><%= @names.join(", ") if @names != nil%></textarea><br>
+  </div><br>
+  <div>
+  <label>Method</label><br>
+  <input type="radio" name="method" value='Team Count'
+  <% if @method != "Number Per Team" %> checked="checked" <% end %> >Team Count
+  <input type="radio" name="method" value='Number Per Team'
+  <% if @method == "Number Per Team" %> checked="checked" <% end %> >Number Per Team<br>
+  </div><br>
+  <div>
+  <label>Number</label>
+  <input type"text" name="number" value="<%= @number %>"/><br>
+</div><br>
+  <input type="submit" value="Submit"/>
+</form>
+<% if @error != "" %>
+<h3 style="color: red"><%= @error %></h3>
+<% elsif @teams != nil %>
+  <%for team in @teams %>
+  <div id="team"><h3><%= "#{team[0]}" %></h3>
+    <% for i in 0..team[1].length %>
+      <p><%= "#{team[1][i]}" %></p>
+    <% end %>
+  </div>
+  <% end %>
+<% end %>
